@@ -1,8 +1,7 @@
 ﻿using System.Data;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace ResetDBIsolationLevel;
+namespace Microsoft.EntityFrameworkCore.ResetDBIsolationLevel;
 
 /// <summary>
 /// Extension methods for <see cref="DbContextOptionsBuilder"/>

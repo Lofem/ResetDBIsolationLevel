@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using IsolationLevel = System.Data.IsolationLevel;
 
 
-namespace ResetDBIsolationLevel
+namespace Microsoft.EntityFrameworkCore.ResetDBIsolationLevel
 {
     internal sealed class IsolationLevelInterceptor : DbConnectionInterceptor
     {
