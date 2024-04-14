@@ -14,9 +14,9 @@ public static class EntityFrameworkExtensions
     /// <param name="optionsBuilder"><see cref="DbContextOptionsBuilder"/></param>
     /// <param name="defaultIsolationLevel">isolation level by default</param>
     /// <returns><see cref="DbContextOptionsBuilder"/>.</returns>
-    public static DbContextOptionsBuilder IsolationLevelResetForPoolConnection(
-        this DbContextOptionsBuilder optionsBuilder,
-        IsolationLevel defaultIsolationLevel = IsolationLevel.ReadCommitted)
+    public static DbContextOptionsBuilder<TContext> IsolationLevelResetForPoolConnection<TContext>(
+        this DbContextOptionsBuilder<TContext> optionsBuilder,
+        IsolationLevel defaultIsolationLevel = IsolationLevel.ReadCommitted) where TContext : DbContext
     {
         var coreOptionsExtension = optionsBuilder.Options.FindExtension<CoreOptionsExtension>();
 
