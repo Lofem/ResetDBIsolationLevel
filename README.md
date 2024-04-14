@@ -15,3 +15,5 @@ Example for DbContext configure:
     .UseSqlServer(connectionString)
     .IsolationLevelResetForPoolConnection())
 ```
+
+nuget link https://www.nuget.org/packages/ResetDBIsolationLevel
