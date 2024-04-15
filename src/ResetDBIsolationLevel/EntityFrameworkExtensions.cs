@@ -13,10 +13,12 @@ public static class EntityFrameworkExtensions
     /// </summary>
     /// <param name="optionsBuilder"><see cref="DbContextOptionsBuilder"/></param>
     /// <param name="defaultIsolationLevel">isolation level by default</param>
+    /// <typeparam name="TDbContextOptionsBuilder">The type derived from <see cref="DbContextOptionsBuilder"/></typeparam>
     /// <returns><see cref="DbContextOptionsBuilder"/>.</returns>
-    public static DbContextOptionsBuilder<TContext> IsolationLevelResetForPoolConnection<TContext>(
-        this DbContextOptionsBuilder<TContext> optionsBuilder,
-        IsolationLevel defaultIsolationLevel = IsolationLevel.ReadCommitted) where TContext : DbContext
+    public static TDbContextOptionsBuilder IsolationLevelResetForPoolConnection<TDbContextOptionsBuilder>(
+        this TDbContextOptionsBuilder optionsBuilder,
+        IsolationLevel defaultIsolationLevel = IsolationLevel.ReadCommitted)
+        where TDbContextOptionsBuilder : DbContextOptionsBuilder
     {
         var coreOptionsExtension = optionsBuilder.Options.FindExtension<CoreOptionsExtension>();
 
@@ -30,6 +32,8 @@ public static class EntityFrameworkExtensions
             return optionsBuilder;
         }
 
-        return optionsBuilder.AddInterceptors(new IsolationLevelInterceptor(defaultIsolationLevel));
+        optionsBuilder.AddInterceptors(new IsolationLevelInterceptor(defaultIsolationLevel));
+
+        return optionsBuilder;
     }
 }
